@@ -1,30 +1,23 @@
-import json
-import os
-
+import mysql.connector
 POINTS_OF_WINNING = 5
+
 
 def add_score(name, difficulty):
     points = (difficulty * 3) + POINTS_OF_WINNING
 
-    # Check if the scores file exists
-    if os.path.exists("scores.json"):
-        with open("scores.json", "r") as file:
-            scores = json.load(file)
+    # Connect to the MySQL database
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="password",
+        database="games"
+    )
+    cursor = db.cursor()
 
-        # Check if the name already exists in the scores
-        if name in scores:
-            scores[name] += points
-        else:
-            scores[name] = points
-    else:
-        scores = {name: points}
+    # Insert or update the score in the users_scores table
+    query = "INSERT INTO users_scores (name, score) VALUES (%s, %s) ON DUPLICATE KEY UPDATE score = score + %s"
+    cursor.execute(query, (name, points, points))
 
-    # Write the updated scores back to the file
-    with open("scores.json", "w") as file:
-        json.dump(scores, file)
-
-# Example usage:
-# if __name__ == "__main__":
-#     name = input("Enter your name: ")
-#     difficulty = int(input("Enter game difficulty (1-5): "))
-#     add_score(name, difficulty)
+    # Commit the transaction and close the connection
+    db.commit()
+    db.close()

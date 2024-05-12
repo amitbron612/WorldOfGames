@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS users_scores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(25) NOT NULL UNIQUE,
+    score INT
+);
