@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess Game</title>
+</head>
+<body>
+    <h1>Guess Game</h1>
+    <p>Guess the number between 1 and {{ difficulty }}</p>
+    <form method="POST">
+        <input type="hidden" name="difficulty" value="{{ difficulty }}">
+        <label for="guess">Your guess:</label>
+        <input type="number" id="guess" name="guess" min="1" max="{{ difficulty }}" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

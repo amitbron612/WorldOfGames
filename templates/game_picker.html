@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pick a Game</title>
+</head>
+<body>
+    <h1>Pick a Game</h1>
+    <form method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="game">Choose a game:</label>
+        <select id="game" name="game" required>
+            <option value="1">Memory Game</option>
+            <option value="2">Guess Game</option>
+            <option value="3">Currency Roulette Game</option>
+        </select>
+        <br>
+        <label for="difficulty">Choose difficulty (1-5):</label>
+        <select id="difficulty" name="difficulty" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <button type="submit">Play</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Game</title>
+    <script>
+        function startGame() {
+            setTimeout(() => {
+                document.getElementById('sequence').style.display = 'none';
+                document.getElementById('input_form').style.display = 'block';
+            }, 700);
+        }
+    </script>
+</head>
+<body onload="startGame()">
+    <h1>Memory Game</h1>
+    <p id="sequence">{{ sequence }}</p>
+    <form id="input_form" method="post" style="display:none;">
+        <input type="hidden" name="difficulty" value="{{ difficulty }}">
+        {% for i in range(difficulty) %}
+            <label for="num_{{ i + 1 }}">Number {{ i + 1 }}:</label>
+            <input type="number" id="num_{{ i + 1 }}" name="num_{{ i + 1 }}" required>
+            <br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
