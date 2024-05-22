@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Roulette Result</title>
+</head>
+<body>
+    <h1>Currency Roulette Result</h1>
+    <p>{{ result }}</p>
+    <p>Your guess: {{ guess }}</p>
+    <p>The correct interval was: [{{ lower_bound }}, {{ upper_bound }}]</p>
+    <a href="{{ url_for('game_picker') }}">Play Again</a>
+    <br>
+    <a href="{{ url_for('welcome_page') }}">Back to Home Screen</a>
+</body>
+</html>

@@ -1,23 +1,31 @@
-# Use the official Python image as a base image
-FROM python:3.9-slim
+# Use the official Python image from the Docker Hub
+FROM python:3.12-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements.txt file into the container at /app
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-libmysqlclient-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the requirements file into the container
 COPY requirements.txt .
 
-# Install Flask and other dependencies specified in requirements.txt
+# Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the Flask application code into the container at /app
+# Copy the rest of the application code into the container
 COPY . .
 
-# Copy the Scores.txt file into the container at /Scores.json
-COPY scores.json /scores.json
+# Set environment variables
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=development
 
-# Expose port 5000 to the outside world
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Command to run the Flask application
-CMD ["python", "MainScores.py"]
+# Run the application
+CMD ["flask", "run", "--host=0.0.0.0"]

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Roulette Game</title>
+</head>
+<body>
+    <h1>Currency Roulette Game</h1>
+    <p>Difficulty: {{ difficulty }}</p>
+    <p>The generated number is: {{ generated_number }}</p>
+    <form action="/CurrencyRouletteGame" method="post">
+        <label for="guess">Guess the value of the generated number in USD after exchange to ILS:</label>
+        <input type="number" step="any" id="guess" name="guess" required>
+        <button type="submit">Submit Guess</button>
+    </form>
+</body>
+</html>
