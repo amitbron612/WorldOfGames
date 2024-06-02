@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include 'worldofgames-chart.fullname' . }}-test-connection"
+  labels:
+    {{- include "worldofgames-chart.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+  - name: wget
+    image: busybox
+    command: ['wget']
+    args: ['{{ include "worldofgames-chart.fullname" . }}-webapp:{{ .Values.webapp.service.port }}']
+  restartPolicy: Never

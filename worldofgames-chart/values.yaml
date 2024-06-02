@@ -1,0 +1,28 @@
+replicaCount: 1
+
+webapp:
+  replicaCount: 1
+  image:
+    repository: amitbron612/worldofgames
+    tag: latest
+  service:
+    port: 5000
+
+mysql:
+  host: "{{ .Release.Name }}-mysql"
+  database: games
+  user: root
+  password: "password"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+ingress:
+  enabled: true
+  host: "example.com"
+
+service:
+  port: 80
